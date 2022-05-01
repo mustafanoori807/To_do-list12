@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>To-Do List</h1>
+<input type="text" id="input-task" placeholder="Enter new task name">
+<button id="add-task-button">ADD TASK</button>
+<ul id="task-list" class="tasklist">
+    <li>
+        <input type="checkbox">
+        <span class="task">Do some</span>
+        <button class="delete-btn" onclick="this.parentNode.remove()">+</button>
+    </li>
+    <li>
+        <input type="checkbox">
+        <span class="task">Do some more</span>
+        <button class="delete-btn" onclick="this.parentNode.remove()">+</button>
+    </li>
+    <li>
+        <input type="checkbox">
+        <span class="task">Do some less</span>
+        <button class="delete-btn" onclick="this.parentNode.remove()">+</button>
+    </li>
+</ul>
+<script src="main.js"></script>
+</body>
+</html>

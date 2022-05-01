@@ -1,0 +1,178 @@
+hyperskill_project:
+  id: 183
+  ide_files: https://stepik.org/media/attachments/lesson/531589/additional_files.json
+  is_template_based: false
+  use_ide: true
+update_date: Sun, 01 May 2022 05:25:59 UTC
+stages:
+- id: 927
+  step: 13194
+  is_completed: true
+- id: 928
+  step: 13195
+  is_completed: true
+- id: 929
+  step: 13196
+  is_completed: true
+- id: 930
+  step: 13197
+  is_completed: true
+topics:
+  0:
+  - title: Binary numbers
+    theory_id: 5544
+  - title: Hexadecimal numbers
+    theory_id: 8788
+  - title: Introduction to UI/UX
+    theory_id: 14603
+  - title: Layout grids
+    theory_id: 14922
+  - title: Interface elements
+    theory_id: 15253
+  - title: Fonts
+    theory_id: 15045
+  - title: Colors
+    theory_id: 14914
+  - title: World Wide Web
+    theory_id: 6633
+  - title: HyperText Transfer Protocol
+    theory_id: 6569
+  - title: HTML basics
+    theory_id: 6434
+  - title: HTTP URL
+    theory_id: 6740
+  - title: Tags and Attributes
+    theory_id: 7536
+  - title: HTML page structure
+    theory_id: 6491
+  - title: Comments
+    theory_id: 7502
+  - title: Block-level elements
+    theory_id: 7271
+  - title: Inline elements
+    theory_id: 7518
+  - title: What is CSS
+    theory_id: 7678
+  - title: Connecting CSS to HTML
+    theory_id: 7418
+  - title: Basic syntax
+    theory_id: 7722
+  - title: Comments
+    theory_id: 7730
+  - title: Relative units
+    theory_id: 10671
+  - title: Absolute units
+    theory_id: 10605
+  - title: Position
+    theory_id: 11581
+  - title: Float
+    theory_id: 12697
+  - title: Clear
+    theory_id: 12705
+  - title: HTML attributes id and class
+    theory_id: 7527
+  - title: Margin and Padding
+    theory_id: 8346
+  - title: Width and Height
+    theory_id: 8325
+  - title: CSS Selectors
+    theory_id: 7738
+  - title: Google Fonts
+    theory_id: 7844
+  - title: Introduction to Flexbox
+    theory_id: 11760
+  - title: Orientation and Display order
+    theory_id: 11768
+  - title: Flexibility, growth and contraction ratio
+    theory_id: 18859
+  - title: Axis alignment
+    theory_id: 11784
+  - title: Fonts
+    theory_id: 15189
+  - title: Border
+    theory_id: 8355
+  - title: Lists
+    theory_id: 8178
+  - title: List style
+    theory_id: 11645
+  - title: Links
+    theory_id: 11834
+  - title: Colors
+    theory_id: 7973
+  - title: Links
+    theory_id: 19281
+  - title: Background
+    theory_id: 11670
+  - title: Web development
+    theory_id: 13931
+  - title: RGB
+    theory_id: 8819
+  1:
+  - title: Comments
+    theory_id: 8170
+  - title: Functions
+    theory_id: 8388
+  - title: setTimeout and setInterval
+    theory_id: 9680
+  - title: Anonymous Function
+    theory_id: 10865
+  - title: Arrow Functions
+    theory_id: 8455
+  - title: Introduction to Arrays
+    theory_id: 16141
+  - title: Array creation
+    theory_id: 16356
+  - title: DOM
+    theory_id: 8635
+  - title: DOM events
+    theory_id: 10857
+  - title: Connecting JavaScript to HTML
+    theory_id: 7510
+  - title: DOM methods
+    theory_id: 8662
+  - title: The "addEventListener" method
+    theory_id: 8723
+  - title: Introduction to JavaScript
+    theory_id: 8016
+  - title: Overview of the basic program
+    theory_id: 8154
+  - title: Multi-line programs
+    theory_id: 8162
+  - title: Strings and Numbers
+    theory_id: 8194
+  - title: Arithmetic operators
+    theory_id: 8372
+  - title: Variables
+    theory_id: 8186
+  - title: Boolean and Logical Operators
+    theory_id: 8471
+  - title: Increment and Decrement
+    theory_id: 9102
+  - title: JSON
+    theory_id: 6854
+  - title: Introduction to Objects
+    theory_id: 8588
+  - title: Null and Undefined
+    theory_id: 8564
+  - title: Type Conversion
+    theory_id: 8380
+  - title: Comparison Operators
+    theory_id: 8580
+  - title: Conditional Operators
+    theory_id: 8889
+  - title: For Loops
+    theory_id: 9119
+  2:
+  - title: ClassList
+    theory_id: 11653
+  3:
+  - title: Introduction to Operating systems
+    theory_id: 9704
+  - title: Command line overview
+    theory_id: 8977
+  - title: Parameters and Options
+    theory_id: 9746
+  - title: Introduction to Linux
+    theory_id: 9526
+  - title: Starting with Git
+    theory_id: 10894

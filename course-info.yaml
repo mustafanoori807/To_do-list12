@@ -1,0 +1,11 @@
+type: hyperskill
+title: To-Do List
+language: English
+summary: Have you ever had the feeling that you're missing something important? If
+  so, to-do lists can be of help. A clear outline of your daily tasks will help you
+  stay composed and mentally focused. In this project, you will create a simple to-do
+  list that can manage your tasks.<br/><br/>Learn more at <a href="https://hyperskill.org/projects/183?utm_source=ide&utm_medium=ide&utm_campaign=ide&utm_content=project-card">https://hyperskill.org/projects/183</a>
+programming_language: JavaScript
+content:
+- To-Do List
+mode: Study

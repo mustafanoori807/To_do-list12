@@ -1,0 +1,86 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: aliceblue;
+}
+
+main {
+    width: 50%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 25px 5%;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+}
+
+h1 {
+    font-size: 60px;
+    font-weight: 400;
+}
+
+#task-list {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 25px 0;
+    list-style: none;
+}
+
+li:not(:last-child) {
+    margin-bottom: 25px;
+}
+
+li {
+    display: grid;
+    grid-template-columns: 25px 1fr 25px;
+    column-gap: 15px;
+    align-items: center;
+}
+
+.new-task {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    column-gap: 25px;
+    margin: 50px 0;
+}
+
+#input-task {
+    font-family: inherit;
+    background-color: transparent;
+    outline: 0;
+    border: 0;
+    border-bottom: 2px solid darkolivegreen;
+}
+
+#input-task[placeholder] {
+    letter-spacing: 0.25px;
+}
+
+#add-task-button {
+    padding: 10px 25px;
+    font-family: inherit;
+    outline: 0;
+    border: 0;
+    color: white;
+    background-color: darkolivegreen;
+}
+
+.delete-btn {
+    width: 25px;
+    height: 25px;
+    padding: 0;
+    font-size: 25px;
+    line-height: 0;
+    text-align: center;
+    color: white;
+    background-color: crimson;
+    border-radius: 50%;
+    outline: 0;
+    border: 0;
+    transform: rotate(45deg);
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+}

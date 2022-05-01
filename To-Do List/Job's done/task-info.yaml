@@ -1,0 +1,380 @@
+type: edu
+files:
+- name: src/index.html
+  visible: true
+  text: |
+    <!doctype html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+    </head>
+    <body>
+
+    </body>
+    </html>
+  learner_created: false
+- name: test/test.js
+  visible: false
+  text: |
+    const path = require('path');
+    const pagePath = 'file://' + path.resolve(__dirname, '../src/index.html');
+    const {StageTest, correct, wrong} = require('hs-test-web');
+
+    class TodoTest extends StageTest {
+
+        page = this.getPage(pagePath)
+
+        tests = [
+            this.page.execute(() => {
+                if (document.title !== 'To-Do List') {
+                    return wrong("The title of the page should be 'To-Do List'")
+                }
+                return correct();
+            }),
+            this.page.execute(() => {
+                const inputField = document.getElementById("input-task")
+                if (inputField === null || inputField.tagName !== 'INPUT')
+                    return wrong("Can't find input field with id '#input-task'")
+
+                const addButton = document.getElementById("add-task-button")
+                if (addButton === null || addButton.tagName !== 'BUTTON')
+                    return wrong("Can't find button with id '#add-task-button'")
+
+                this.taskList = document.getElementById("task-list")
+                if (this.taskList === null || this.taskList.tagName !== 'UL')
+                    return wrong("Can't find <ul> tag with id '#task-list'")
+
+                return correct();
+            }),
+            this.page.execute(() => {
+
+                const tasks = this.taskList.getElementsByTagName("li")
+                if (tasks.length !== 3)
+                    return wrong("Inside the <ul> tag should be 3 <li> elements!")
+
+                for (let task of tasks) {
+                    const checkbox = task.querySelector("input[type=checkbox]")
+                    if (checkbox === null)
+                        return wrong("Inside each <li> tag should one <input> tag with 'checkbox' type")
+
+                    const taskName = task.querySelector("span.task")
+                    if (taskName === null)
+                        return wrong("Inside each <li> tag should one <spane> tag with 'task' class")
+
+                    const deleteButton = task.querySelector("button.delete-btn")
+                    if (deleteButton === null)
+                        return wrong("Inside each <li> tag should one <button> tag with 'delete-btn' class")
+                }
+
+                return correct();
+            }),
+            this.page.execute(() => {
+
+                const inputField = document.getElementById("input-task")
+                if (inputField.tagName !== 'INPUT')
+                    return wrong("Can't find input field with id '#input-task'")
+
+                inputField.value = "New task for the test purpose"
+
+                const addButton = document.getElementById("add-task-button")
+                if (addButton.tagName !== 'BUTTON')
+                    return wrong("Can't find button with id '#add-task-button'")
+
+                addButton.click()
+
+                const tasks = this.taskList.getElementsByTagName("li")
+                if (tasks.length !== 4)
+                    return wrong("After adding a new task to the To-Do list, there should be 4 <li> tags inside the <ul> list")
+
+                for (let task of tasks) {
+
+                    const taskName = task.querySelector("span.task")
+                    if (taskName === null)
+                        return wrong("Inside each <li> tag should one <spane> tag with 'task' class")
+
+                    if (taskName.textContent === "New task for the test purpose") {
+                        return correct()
+                    }
+                }
+
+                return wrong("Can't find task with name 'New task for the test purpose'.\n" +
+                    "The task name should be placed in <span> tag with class 'task'!")
+            }),
+            this.page.execute(() => {
+
+                let tasks = this.taskList.getElementsByTagName("li")
+
+                for (let task of tasks) {
+                    const taskName = task.querySelector("span.task")
+                    if (taskName === null)
+                        return wrong("Inside each <li> tag should one <spane> tag with 'task' class")
+
+                    if (taskName.textContent === "New task for the test purpose") {
+                        const deleteButton = task.querySelector("button.delete-btn")
+                        if (deleteButton === null)
+                            return wrong("Inside each <li> tag should one <button> tag with 'delete-btn' class")
+                        deleteButton.click()
+                        break
+                    }
+                }
+
+                tasks = this.taskList.getElementsByTagName("li")
+
+                for (let task of tasks) {
+                    const taskName = task.querySelector("span.task")
+                    if (taskName === null)
+                        return wrong("Inside each <li> tag should one <span> tag with 'task' class")
+
+                    if (taskName.textContent === "New task for the test purpose") {
+                        return wrong("After deleting a task with name 'New task for the test purpose' it is still in the task list!")
+                    }
+                }
+
+                return correct()
+            }),
+            this.page.execute(async () => {
+
+                const tasks = this.taskList.getElementsByTagName("li")
+
+                if (tasks.length !== 3)
+                    return wrong("After adding a new task to the To-Do list, there should be 3 <li> tags inside the <ul> list")
+
+                const task = tasks[1]
+
+                const checkbox = task.querySelector("input[type=checkbox]")
+
+                if (checkbox.checked) {
+                    return wrong("By default a checkbox should be unchecked!")
+                }
+
+                checkbox.click()
+
+                let taskName = task.querySelector("span.task")
+                if (taskName === null)
+                    return wrong("Inside each <li> tag should be one <span> tag with 'task' class")
+
+                if (!window.getComputedStyle(taskName).textDecoration.includes("line-through")) {
+                    return wrong("If checkbox is checked the task name should be crossed out.\n" +
+                        "The span tag with task name should have 'text-decoration: line-through' style")
+                }
+
+                checkbox.click()
+
+                if (window.getComputedStyle(taskName).textDecoration.includes("line-through")) {
+                    return wrong("If checkbox is unchecked the task name shouldn't be crossed out.\n" +
+                        "The span tag with task name shouldn't have 'text-decoration: line-through' style")
+                }
+
+                return correct()
+            })
+        ]
+    }
+
+    it('Test stage', async function () {
+        try {
+            this.timeout(30000)
+        } catch (ignored) {
+        }
+        await new TodoTest().runTests()
+    }, 30000)
+  learner_created: false
+- name: src/list.css
+  visible: true
+  text: |-
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: aliceblue;
+    }
+
+    main {
+        width: 50%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 25px 5%;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 18px;
+    }
+
+    h1 {
+        font-size: 60px;
+        font-weight: 400;
+    }
+
+    #task-list {
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        padding: 25px 0;
+        list-style: none;
+    }
+
+    li:not(:last-child) {
+        margin-bottom: 25px;
+    }
+
+    li {
+        display: grid;
+        grid-template-columns: 25px 1fr 25px;
+        column-gap: 15px;
+        align-items: center;
+    }
+
+    .new-task {
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        column-gap: 25px;
+        margin: 50px 0;
+    }
+
+    #input-task {
+        font-family: inherit;
+        background-color: transparent;
+        outline: 0;
+        border: 0;
+        border-bottom: 2px solid darkolivegreen;
+    }
+
+    #input-task[placeholder] {
+        letter-spacing: 0.25px;
+    }
+
+    #add-task-button {
+        padding: 10px 25px;
+        font-family: inherit;
+        outline: 0;
+        border: 0;
+        color: white;
+        background-color: darkolivegreen;
+    }
+
+    .delete-btn {
+        width: 25px;
+        height: 25px;
+        padding: 0;
+        font-size: 25px;
+        line-height: 0;
+        text-align: center;
+        color: white;
+        background-color: crimson;
+        border-radius: 50%;
+        outline: 0;
+        border: 0;
+        transform: rotate(45deg);
+    }
+
+    input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+    }
+  learner_created: true
+- name: src/list.style.css
+  visible: true
+  text: |-
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 5rem auto;
+        width: 90vw;
+    }
+
+    h1 {
+        font-size: 2.4rem;
+        font-weight: normal;
+    }
+
+    #new-task {
+        display: flex;
+        width: 50%;
+        margin: 1.5rem 0;
+    }
+
+    #input-task {
+        flex: 3;
+        border: none;
+        border-bottom: 2px solid #6b5d78;
+        padding: 1rem;
+    }
+
+    #add-task-button {
+        flex: 1;
+        background: #c8b8dd;
+        color: #fff;
+        border: none;
+        font-weight: bold;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        margin-left: 10px;
+    }
+
+    #task-list {
+        list-style: none;
+        width: 50%;
+    }
+
+    #task-list li {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 2.5rem;
+    }
+
+    .check {
+        width: 1rem;
+        height: 1rem;
+    }
+
+    .task {
+        flex: 2;
+        font-size: 1.2rem;
+        margin-left: 1rem;
+    }
+
+    .delete-btn {
+        background: red;
+        border: none;
+        border-radius: 50%;
+        color: #fff;
+        width: 1.4rem;
+        height: 1.4rem;
+    }
+
+    .delete-btn::after {
+        content: "\00d7";
+        position: relative;
+        font-size: x-large;
+        top: -10%;
+    }
+  learner_created: true
+- name: src/list.html.js
+  visible: true
+  text: |-
+    document.getElementById("add-task-button")
+        .addEventListener("click", function () {
+                let taskList = document.getElementById("task-list");
+                let li = document.createElement("li");
+                li.innerHTML =
+                    '<input type="checkbox"><span class="task">'
+                    + document.getElementById("input-task").value  + '</span><button class="delete-btn" onClick="this.parentNode.remove()">+</button>';
+                taskList.appendChild(li);
+            }
+        );
+  learner_created: true
+feedback_link: https://hyperskill.org/learn/step/13196#comment
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Sun, 24 Apr 2022 07:02:22 UTC
+record: 3
